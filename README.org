@@ -1,0 +1,24 @@
+#+AUTHOR: phdenzel
+#+TITLE: xmobarconf
+#+OPTIONS: toc:nil
+
+The problem: ~xmobar~'s configuration file is *not* (exactly) haskell
+code! This makes defining variables, importing other modules, and
+reusing code from ~xmonad~ configurations hard.
+
+~xmobarconf~ is my solution. It is a haskell program in which xmobar
+configurations can be written in pure haskell, and correctly exported.
+
+Simply edit the ~XMobarConf.hs~ file (it can be copied over from your
+old ~xmobarrc~ almost 1-to-1, just make sure to add ~$~ before every
+~Run~ command) and make use of all of haskell's features.
+
+
+*** Install
+
+    After editing the configurations, compile with
+
+    #+BEGIN_SRC shell
+      make
+      make install
+    #+END_SRC
