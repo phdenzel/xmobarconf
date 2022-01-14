@@ -1,10 +1,7 @@
 
-xmobarconf: imports
-	ghc --make -o xmobarconf XMobarConf.hs
+xmobarconf:
+	ghc -i${HOME}/.config/xmonad/lib/ --make -o xmobarconf XMobarConf.hs
 	./xmobarconf
-
-imports:
-	@bash import_lib
 
 install: .xmobarrc
 	cp .xmobarrc ~/.config/xmobar/xmobarrc

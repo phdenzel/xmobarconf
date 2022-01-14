@@ -1,6 +1,7 @@
 module Main (main) where
 
 import XMobarConfGenerator
+import Colors.PhDDark
 
 main = export $ config {
   -- appearance
@@ -92,7 +93,7 @@ main = export $ config {
                        -- , ("sdb2"  , "<fn=1> </fn><usedp>")
                        -- , ("sdc1"  , "<fn=1> </fn><usedp>")
                        -- , ("sdd1"  , "<fn=1> </fn><usedp>")
-                     ] [ "-L" , "25"  -- units: %
+                     ] [ "-L" , "50"  -- units: %
                        , "-H" , "75"  -- units: %
                        , "-l" , color07
                        , "-n" , color11
@@ -141,6 +142,8 @@ main = export $ config {
     -- keyboard layout indicator
     , Run $ Kbd [("us" , "US")]
 
+    -- Trayer padding
+    , Run $ Com "trayer_padding" [] "trayerpad" 20
       
     -- read IO & Logs
     , Run $ UnsafeStdinReader
@@ -155,6 +158,6 @@ main = export $ config {
   -- (info)     kbd, UnsafeStdinReader
   , sepChar  = "%"
   , alignSep = "}{"
-  , template = " %phoenix% | %cpuicon%%cpu% %memoryicon%%memory% %diskuicon%%disku%%diskio% %dynnetworkicon%%dynnetwork% }{ <action=`xmobar_wttr`>%wttr%</action> | %date% "
+  , template = " %trayerpad% %phoenix% | %cpuicon%%cpu% %memoryicon%%memory% %diskuicon%%disku%%diskio% %dynnetworkicon%%dynnetwork% }{ <action=`xmobar_wttr`>%wttr%</action> | %date% "
 
   }
