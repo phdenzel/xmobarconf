@@ -9,11 +9,11 @@ main = export $ config {
   , additionalFonts =
       [ "xft:Hack:size=4:antialias=true"
       , "xft:Font Awesome 5 Free Solid:pixelsize=11:hinting=true"
-      , "xft:Font Awesome 5 Free Solid:pixelsize=20:hinting=true"
-      , "xft:Font Awesome 5 Brands Regular:pixelsize=11:hinting=true"
-      , "xft:Font Awesome 5 Brands Regular:pixelsize=20:hinting=true"
+      , "xft:Font Awesome 5 Free Solid:pixelsize=16:hinting=true"
+      , "xft:Font Awesome 5 Brands Regular:pixelsize=16:hinting=true"
+      , "xft:Font Awesome 5 Brands Regular:pixelsize=24:hinting=true"
       , "xft:Weather Icons:pixelsize=16:hinting=true"]
-  , iconRoot     = ".xmonad/xpm/"
+  , iconRoot     = ".config/xmonad/xpm/"
   , bgColor      = colorBack
   , fgColor      = colorFore
   , borderColor  = color08
@@ -54,22 +54,7 @@ main = export $ config {
                      , "-n" , color11
                      , "-h" , color09
                      , "-p" , "2"
-                     ] 30
-    -- , Run $ MultiCpu [ "-t" , "<total0>:<total1>:<total2>:<total3>%"
-    --                  , "-L" , "50"  -- units: %
-    --                  , "-H" , "85"  -- units: %
-    --                  , "-l" , color07
-    --                  , "-n" , color11
-    --                  , "-h" , color09
-    --                  , "-p" , "2"
-    --                  ] 30
-    -- , Run $ CpuFreq  [ "-t" , "<fn=1> </fn><cpu>GHz"
-    --                  , "-L" , "1"   -- units: GHz
-    --                  , "-H" , "2.5" -- units: GHz
-    --                  , "-l" , color07
-    --                  , "-n" , color11
-    --                  , "-h" , color09
-    --                  ] 30
+                     a] 30
     -- , Run $ CoreTemp [ "-t" , "<fn=1> </fn><core0>°C|<core1>°C"
     --                  , "-L" , "70"  -- units: °C
     --                  , "-H" , "80"  -- units: °C
@@ -87,7 +72,7 @@ main = export $ config {
                      , "-p" , "2"
                      ] 10
     , Run $ Com "echo" ["<fn=2>\xf0a0</fn>"] "diskuicon" 36000
-    , Run $ DiskU    [ ("/"  , "<fn=1> </fn><free><fn=1> </fn>free")
+    , Run $ DiskU    [ ("/"  , "<fn=1> </fn><free><fn=1> </fn>")
                        -- , ("/"  , "<fn=1> </fn><used>/<size>")
                        -- , ("sda1"  , "<fn=1> </fn><usedp>")
                        -- , ("sdb2"  , "<fn=1> </fn><usedp>")
@@ -132,19 +117,18 @@ main = export $ config {
     -- uptime
     , Run $ Uptime [ "-t" , "<hours>h:<minutes>min"] 600
 
-    -- time and date indicator 
-    --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
+    -- time and date indicator
     , Run $ Date "%a<fn=1> </fn>%b<fn=1> </fn>%d %H:%M" "date" 10
 
     -- audio controle
     -- , Run Alsa
-      
+
     -- keyboard layout indicator
     , Run $ Kbd [("us" , "US")]
 
     -- Trayer padding
     , Run $ Com "trayer_padding" [] "trayerpad" 20
-      
+
     -- read IO & Logs
     , Run $ UnsafeStdinReader
     -- , Run UnsafeXMonadLog
@@ -158,6 +142,17 @@ main = export $ config {
   -- (info)     kbd, UnsafeStdinReader
   , sepChar  = "%"
   , alignSep = "}{"
-  , template = " %trayerpad% %phoenix% | %cpuicon%%cpu% %memoryicon%%memory% %diskuicon%%disku%%diskio% %dynnetworkicon%%dynnetwork% }{ <action=`xmobar_wttr`>%wttr%</action> | %date% "
-
+  , template = (" %trayerpad% "
+                ++ "<fc=" ++ color05 ++ ">%phoenix%</fc> "
+                ++ "%UnsafeStdinReader% "
+                ++"| "
+                ++ "%cpuicon%%cpu% "
+                ++ "%memoryicon%%memory% "
+                ++ "%diskuicon%%disku%%diskio% "
+                ++ "%dynnetworkicon%%dynnetwork% "
+                ++"}{ "
+                ++ "<action=`xmobar_wttr`>%wttr%</action> "
+                ++ "| "
+                ++"%date% "
+               )
   }
