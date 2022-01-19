@@ -142,6 +142,7 @@ data Command = Uptime                                [String] Int
              | Mail               [(String, String)] String
              | Mbox               [(String, String, String)] [String] String
              | XPropertyLog       String
+             | UnsafeXPropertyLog String
              | NamedXPropertyLog  String String
              | Brightness         [String]                    Int
              | Kbd                [(String, String)]
