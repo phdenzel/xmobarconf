@@ -30,7 +30,7 @@ main = export $ config {
   , hideOnStart  = False  -- start with window unmapped (hidden)
   , allDesktops  = True   -- show on all desktops
   , pickBroadest = False  -- choose widest display (multi-monitor)
-  , persistent   = True   -- enable/disable hiding (True=disabled)
+  , persistent   = True   -- enable/disable hiding (True=disabled) 
 
   -- plugins
   , commands =
@@ -38,7 +38,7 @@ main = export $ config {
     [ Run $ Com "echo" ["<fn=5>\xf3dc</fn>"] "phoenix" 360000
     --, Run $ Com "echo" ["<fn=5>\xf17c</fn>"] "penguin" 360000
     --, Run $ Com "echo" ["<fn=5>\xf520</fn>"] "raven"   360000
-    --, Run $ Com "echo" ["<fn=5>\xf514</fn>"] "fenrir"  360000
+    --, Run $ Com "echo" ["<fn=5>\xf514</fn>"] "wolf"    360000
     --, Run $ Com "echo" ["<fn=5>\xf3f8</fn>"] "harpy"   360000
     --, Run $ Com "echo" ["<fn=5>\xf535</fn>"] "kiwi"    360000
 
@@ -54,7 +54,7 @@ main = export $ config {
                      , "-n" , color11
                      , "-h" , color09
                      , "-p" , "2"
-                     a] 30
+                     ] 30
     -- , Run $ CoreTemp [ "-t" , "<fn=1> </fn><core0>°C|<core1>°C"
     --                  , "-L" , "70"  -- units: °C
     --                  , "-H" , "80"  -- units: °C
@@ -130,8 +130,9 @@ main = export $ config {
     , Run $ Com "trayer_padding" [] "trayerpad" 20
 
     -- read IO & Logs
+    , Run $ XPropertyLog "_XMONAD_LOG_1"
     , Run $ UnsafeStdinReader
-    -- , Run UnsafeXMonadLog
+    -- , Run $ UnsafeXMonadLog
     ]
   -- Plugins:
   -- (icons)    phoenix, penguin, raven, fenrir, harpy, kiwi
@@ -144,7 +145,7 @@ main = export $ config {
   , alignSep = "}{"
   , template = (" %trayerpad% "
                 ++ "<fc=" ++ color05 ++ ">%phoenix%</fc> "
-                ++ "%UnsafeStdinReader% "
+                ++ "%_XMONAD_LOG_1% "
                 ++"| "
                 ++ "%cpuicon%%cpu% "
                 ++ "%memoryicon%%memory% "
