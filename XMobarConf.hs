@@ -14,7 +14,7 @@ main = export $ config {
       , "xft:Font Awesome 5 Brands Regular:pixelsize=16:hinting=true"
       , "xft:Font Awesome 5 Brands Regular:pixelsize=24:hinting=true"
       , "xft:Weather Icons:pixelsize=16:hinting=true"]
-  , iconRoot     = "~/.config/xmonad/icons/"
+  , iconRoot     = ".config/xmonad/icons"
   , bgColor      = colorBack
   , fgColor      = colorFore
   , borderColor  = color08
@@ -151,21 +151,21 @@ main = export $ config {
   , template = (" %trayerpad% "
                 ++ cwrap color05 "%phoenix% "
                 ++ "%_XMONAD_LOG_1%"
-                ++ " | "
-                ++ "%cpuicon%%cpu%"
+                ++ sep
+                ++ (cwrap color04 "%cpuicon%") ++ "%cpu%"
                 ++ greySep
-                ++ "%memoryicon%%memory%"
+                ++ (cwrap color05 "%memoryicon%") ++ "%memory%"
                 ++ greySep
-                ++ "%diskuicon%%disku%"
+                ++ (cwrap color11 "%diskuicon%") ++ "%disku%"
                 ++ greySep
-                ++ "%diskioicon%%diskio%"
+                ++ (cwrap color11 "%diskioicon%") ++ "%diskio%"
                 ++ greySep
-                ++ "%dynnetworkicon%%dynnetwork%"
+                ++ (cwrap color14 "%dynnetworkicon%") ++ "%dynnetwork%"
                 ++ "}{"
                 ++ "<action=`xmobar_wttr`>%wttr%</action>"
-                ++ " | "
+                ++ sep
                 ++"%date%"
-                ++ " | "
+                ++ " <icon=arch_20.xpm/> "
                )
   }
 
@@ -175,7 +175,9 @@ main = export $ config {
     cwrap :: String -> String -> String
     cwrap c s = "<fc=" ++ c ++ ">" ++ s ++ "</fc>"
     greySep :: String
-    greySep = cwrap color00 (fn 1 "|")
+    greySep = cwrap color08 (fn 1 "|")
+    sep :: String
+    sep = cwrap color00 " | "
     hair :: String
     hair = fn 1 " "
     hwrap :: String -> String
