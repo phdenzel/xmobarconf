@@ -6,14 +6,14 @@ import Colors.PhDDark
 
 main = export $ config {
   -- appearance
-    font    = "xft:Source Code Pro:size=9:antialias=true"
+    font    = "xft:Source Code Pro:size=6:antialias=true"
   , additionalFonts =
       [ "xft:Hack:size=6:antialias=true"
-      , "xft:Font Awesome 5 Free Solid:pixelsize=14:hinting=true"
-      , "xft:Font Awesome 5 Free Solid:pixelsize=18:hinting=true"
-      , "xft:Font Awesome 5 Brands Regular:pixelsize=16:hinting=true"
-      , "xft:Font Awesome 5 Brands Regular:pixelsize=24:hinting=true"
-      , "xft:Weather Icons:pixelsize=16:hinting=true"]
+      , "xft:Font Awesome 5 Free Solid:pixelsize=20:hinting=true"
+      , "xft:Font Awesome 5 Free Solid:pixelsize=24:hinting=true"
+      , "xft:Font Awesome 5 Brands Regular:pixelsize=22:hinting=true"
+      , "xft:Font Awesome 5 Brands Regular:pixelsize=30:hinting=true"
+      , "xft:Weather Icons:pixelsize=22:hinting=true"]
   , iconRoot     = ".config/xmonad/icons"
   , bgColor      = colorBack
   , fgColor      = colorFore
@@ -21,7 +21,7 @@ main = export $ config {
   , alpha        = 255
 
   -- layout
-  , position     = TopSize L 100 23
+  , position     = TopSize L 100 36
   , border       = BottomB
 
   -- general behavior
@@ -35,10 +35,10 @@ main = export $ config {
 
   , commands = [
     -- icons
-      Run $ Com "echo" [phoenixIcon] "phoenix" 360000
+    -- Run $ Com "echo" [phoenixIcon] "phoenix" 360000
     -- Run $ Com "echo" [penguinIcon] "penguin" 360000
     -- Run $ Com "echo" [ravenIcon]   "raven"   360000
-    -- Run $ Com "echo" [wolfIcon]    "wolf"    360000
+    Run $ Com "echo" [wolfIcon]    "wolf"    360000
     -- Run $ Com "echo" [harpyIcon]   "harpy"   360000
     -- Run $ Com "echo" [kiwiIcon]    "kiwi"    360000
 
@@ -82,11 +82,11 @@ main = export $ config {
                        -- , ("sdb2"  , hair++"<usedp>")
                        -- , ("sdc1"  , hair++"<usedp>")
                        -- , ("sdd1"  , hair++"<usedp>")
-                     ] [ "-L" , "50"  -- units: %
-                       , "-H" , "75"  -- units: %
-                       , "-l" , color07
-                       , "-n" , color11
-                       , "-h" , color09
+                     ] [ "-L" , "15"  -- units: %
+                       , "-H" , "85"  -- units: %
+                       , "-l" , color09
+                       , "-n" , color07
+                       , "-h" , color07
                        , "-m" , "3"
                        , "-p" , "3"
                        , "-S" , "true"
@@ -125,6 +125,20 @@ main = export $ config {
     -- time and date indicator
     , Run $ Date ("%a"++(hwrap "%b")++"%d %H:%M") "date" 10
 
+    -- battery
+    , Run $ Com "echo" [hwrap batteryIcon] "batteryicon" 36000
+    , Run $ BatteryP ["BAT0"] ["-t", "<acstatus>"
+                              , "-L", "10"
+                              , "-H", "80"
+                              , "-l", color09
+                              , "-h", color07
+                              , "-p", "3"
+                              , "--"
+                              , "-O", boltIcon ++ hair ++ "<left>%"
+                              , "-i", boltIcon ++ hair ++ "<left>%"
+                              , "-o", "<left>%"
+                              ] 100
+
     -- audio controle
     -- , Run $ Alsa
 
@@ -132,7 +146,7 @@ main = export $ config {
     , Run $ Kbd [("us" , "US")]
 
     -- trayer padding
-    , Run $ Com "trayer_padding" [] "trayerpad" 20
+    , Run $ Com "trayer_padding" [] "trayerpad" 36
 
     -- read IO & Logs
     , Run $ UnsafeXPropertyLog "_XMONAD_LOG_1"
@@ -149,7 +163,7 @@ main = export $ config {
   , sepChar  = "%"
   , alignSep = "}{"
   , template = (" %trayerpad% "
-                ++ cwrap color05 "%phoenix% "
+                ++ cwrap color05 "%wolf% "
                 ++ "%_XMONAD_LOG_1%"
                 ++ sep
                 ++ (cwrap color04 "%cpuicon%") ++ "%cpu%"
@@ -163,6 +177,8 @@ main = export $ config {
                 ++ (cwrap color14 "%dynnetworkicon%") ++ "%dynnetwork%"
                 ++ "}{"
                 ++ "<action=`xmobar_wttr`>%wttr%</action>"
+                ++ sep
+                ++ (cwrap color10 "%batteryicon%") ++ "%battery%"
                 ++ sep
                 ++"%date%"
                 ++ " <icon=arch_20.xpm/> "
@@ -190,13 +206,14 @@ main = export $ config {
     wolfIcon = fn 5 "\xf514"
     harpyIcon = fn 5 "\xf3f8"
     kiwiIcon = fn 5 "\xf535"
-    cpuIcon, memoryIcon, diskUIcon, diskIOIcon, dynNetworkIcon :: String
+    cpuIcon, memoryIcon, diskUIcon, diskIOIcon, dynNetworkIcon, netUpIcon, netDownIcon, batteryIcon, boltIcon :: String
     cpuIcon = fn 2 "\xf2db"
     memoryIcon = fn 2 "\xf538"
     diskUIcon = fn 2 "\xf0a0"
     diskIOIcon = fn 2 "\xf1ce"
     dynNetworkIcon = fn 2 "\xf6ff"
-    netUpIcon = fn 2 "\xf102"
-    netDownIcon = fn 2 "\xf103"
-    netUpAltIcon = fn 2 "\xf0d8"
-    netDownAltIcon = fn 2 "\xf0d7"
+    netUpIcon = fn 2 "\xf102"  -- fn 2 "\xf0d8"
+    netDownIcon = fn 2 "\xf103"  -- fn 2 "\xf0d7"
+    batteryIcon = fn 2 "\xf240"
+    boltIcon = fn 2 "\xf0e7"
+    
