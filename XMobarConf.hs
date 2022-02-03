@@ -162,8 +162,7 @@ main = export $ config {
   -- (info)     kbd, UnsafeXPropertyLog UnsafeStdinReader
   , sepChar  = "%"
   , alignSep = "}{"
-  , template = (" %trayerpad% "
-                ++ cwrap color05 "%wolf% "
+  , template = (cwrap color05 "%wolf% "
                 ++ "%_XMONAD_LOG_1%"
                 ++ sep
                 ++ (cwrap color04 "%cpuicon%") ++ "%cpu%"
@@ -181,7 +180,8 @@ main = export $ config {
                 ++ (cwrap color10 "%batteryicon%") ++ "%battery%"
                 ++ sep
                 ++"%date%"
-                ++ " <icon=arch_20.xpm/> "
+                ++ " <icon=arch_20.xpm/>"
+                ++ " %trayerpad% "
                )
   }
 
