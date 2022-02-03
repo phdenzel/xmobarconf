@@ -134,8 +134,8 @@ main = export $ config {
                               , "-h", color07
                               , "-p", "3"
                               , "--"
-                              , "-O", boltIcon ++ hair ++ "<left>%"
-                              , "-i", boltIcon ++ hair ++ "<left>%"
+                              , "-O", boltIcon ++ "<left>%"
+                              , "-i", boltIcon ++ "<left>%"
                               , "-o", "<left>%"
                               ] 100
 
