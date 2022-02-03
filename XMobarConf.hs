@@ -162,7 +162,7 @@ main = export $ config {
   -- (info)     kbd, UnsafeXPropertyLog UnsafeStdinReader
   , sepChar  = "%"
   , alignSep = "}{"
-  , template = (cwrap color05 "%wolf% "
+  , template = (cwrap color05 " %wolf% "
                 ++ "%_XMONAD_LOG_1%"
                 ++ sep
                 ++ (cwrap color04 "%cpuicon%") ++ "%cpu%"
@@ -181,7 +181,7 @@ main = export $ config {
                 ++ sep
                 ++"%date%"
                 ++ " <icon=arch_20.xpm/>"
-                ++ " %trayerpad% "
+                ++ "%trayerpad% "
                )
   }
 
