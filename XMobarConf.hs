@@ -35,12 +35,12 @@ main = export $ config {
 
   , commands = [
     -- icons
-    -- Run $ Com "echo" [phoenixIcon] "phoenix" 360000
-    -- Run $ Com "echo" [penguinIcon] "penguin" 360000
-    -- Run $ Com "echo" [ravenIcon]   "raven"   360000
-    Run $ Com "echo" [wolfIcon]    "wolf"    360000
-    -- Run $ Com "echo" [harpyIcon]   "harpy"   360000
-    -- Run $ Com "echo" [kiwiIcon]    "kiwi"    360000
+    Run $ Com "echo"   [phoenixIcon] "phoenix" 360000
+    -- , Run $ Com "echo" [penguinIcon] "penguin" 360000
+    -- , Run $ Com "echo" [ravenIcon]   "raven"   360000
+    , Run $ Com "echo" [wolfIcon]    "wolf"    360000
+    -- , Run $ Com "echo" [harpyIcon]   "harpy"   360000
+    -- , Run $ Com "echo" [kiwiIcon]    "kiwi"    360000
 
     -- weather monitor
     , Run $ Com "xmobar_wttr" [] "wttr" 9000
@@ -146,7 +146,7 @@ main = export $ config {
     , Run $ Kbd [("us" , "US")]
 
     -- trayer padding
-    , Run $ Com "trayer_padding" [] "trayerpad" 36
+    , Run $ Com "trayer_padding" [] "trayerpad" 20
 
     -- read IO & Logs
     , Run $ UnsafeXPropertyLog "_XMONAD_LOG_1"
