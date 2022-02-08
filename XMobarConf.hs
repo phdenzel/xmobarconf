@@ -6,9 +6,9 @@ import Colors.PhDDark
 
 main = export $ config {
   -- appearance
-    font    = "xft:Source Code Pro:size=6:antialias=true"
+    font    = "xft:Source Code Pro:size=11:antialias=true"
   , additionalFonts =
-      [ "xft:Hack:size=6:antialias=true"
+      [ "xft:Hack:size=7:antialias=true"
       , "xft:Font Awesome 5 Free Solid:pixelsize=20:hinting=true"
       , "xft:Font Awesome 5 Free Solid:pixelsize=24:hinting=true"
       , "xft:Font Awesome 5 Brands Regular:pixelsize=22:hinting=true"
@@ -74,6 +74,10 @@ main = export $ config {
                      , "-p" , "2"
                      ] 10
 
+    -- gpu
+    , Run $ Com "echo" [hwrap gpuIcon] "gpuicon" 36000
+    , Run $ Com "nvidia_gpustat" ["-a", hair] "gpu" 30
+
     -- disk monitors
     , Run $ Com "echo" [hwrap diskUIcon] "diskuicon" 36000
     , Run $ DiskU    [ ("/"  , "<free>"++hair)
@@ -126,24 +130,24 @@ main = export $ config {
     , Run $ Date ("%a"++(hwrap "%b")++"%d %H:%M") "date" 10
 
     -- battery
-    , Run $ Com "echo" [hwrap batteryIcon] "batteryicon" 36000
-    , Run $ BatteryP ["BAT0"] ["-t", "<acstatus>"
-                              , "-L", "10"
-                              , "-H", "80"
-                              , "-l", color09
-                              , "-h", color07
-                              , "-p", "3"
-                              , "--"
-                              , "-O", boltIcon ++ "<left>%"
-                              , "-i", boltIcon ++ "<left>%"
-                              , "-o", "<left>%"
-                              ] 100
+    -- , Run $ Com "echo" [hwrap batteryIcon] "batteryicon" 36000
+    -- , Run $ BatteryP ["BAT0"] ["-t", "<acstatus>"
+    --                           , "-L", "10"
+    --                           , "-H", "80"
+    --                           , "-l", color09
+    --                           , "-h", color07
+    --                           , "-p", "3"
+    --                           , "--"
+    --                           , "-O", boltIcon ++ "<left>%"
+    --                           , "-i", boltIcon ++ "<left>%"
+    --                           , "-o", "<left>%"
+    --                           ] 100
 
     -- audio controle
     -- , Run $ Alsa
 
     -- keyboard layout indicator
-    , Run $ Kbd [("us" , "US")]
+    -- , Run $ Kbd [("us" , "US")]
 
     -- trayer padding
     , Run $ Com "trayer_padding" [] "trayerpad" 20
@@ -162,10 +166,12 @@ main = export $ config {
   -- (info)     kbd, UnsafeXPropertyLog UnsafeStdinReader
   , sepChar  = "%"
   , alignSep = "}{"
-  , template = (cwrap color05 " %wolf% "
+  , template = (cwrap color05 " %phoenix% "
                 ++ "%_XMONAD_LOG_1%"
                 ++ sep
                 ++ (cwrap color04 "%cpuicon%") ++ "%cpu%"
+                ++ greySep
+                ++ (cwrap color10 "%gpuicon%") ++ "%gpu%"
                 ++ greySep
                 ++ (cwrap color05 "%memoryicon%") ++ "%memory%"
                 ++ greySep
@@ -177,8 +183,8 @@ main = export $ config {
                 ++ "}{"
                 ++ "<action=`xmobar_wttr`>%wttr%</action>"
                 ++ sep
-                ++ (cwrap color10 "%batteryicon%") ++ "%battery%"
-                ++ sep
+                -- ++ (cwrap color10 "%batteryicon%") ++ "%battery%"
+                -- ++ sep
                 ++"%date%"
                 ++ " <icon=arch_20.xpm/>"
                 ++ "%trayerpad% "
@@ -195,7 +201,7 @@ main = export $ config {
     sep :: String
     sep = cwrap color00 " | "
     hair :: String
-    hair = fn 1 " "
+    hair = (fn 1 " ")
     hwrap :: String -> String
     hwrap s = hair ++ s ++ hair
 
@@ -209,6 +215,7 @@ main = export $ config {
     cpuIcon, memoryIcon, diskUIcon, diskIOIcon, dynNetworkIcon, netUpIcon, netDownIcon, batteryIcon, boltIcon :: String
     cpuIcon = fn 2 "\xf2db"
     memoryIcon = fn 2 "\xf538"
+    gpuIcon = fn 4 "\xf50e"
     diskUIcon = fn 2 "\xf0a0"
     diskIOIcon = fn 2 "\xf1ce"
     dynNetworkIcon = fn 2 "\xf6ff"
