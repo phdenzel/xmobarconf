@@ -9,10 +9,10 @@ main = export $ config {
     font    = "xft:Source Code Pro:size=11:antialias=true"
   , additionalFonts =
       [ "xft:Hack:size=7:antialias=true"
-      , "xft:Font Awesome 5 Free Solid:pixelsize=20:hinting=true"
-      , "xft:Font Awesome 5 Free Solid:pixelsize=24:hinting=true"
-      , "xft:Font Awesome 5 Brands Regular:pixelsize=22:hinting=true"
-      , "xft:Font Awesome 5 Brands Regular:pixelsize=30:hinting=true"
+      , "xft:Font Awesome 6 Free Solid:pixelsize=20:hinting=true"
+      , "xft:Font Awesome 6 Free Solid:pixelsize=24:hinting=true"
+      , "xft:Font Awesome 6 Brands Regular:pixelsize=22:hinting=true"
+      , "xft:Font Awesome 6 Brands Regular:pixelsize=30:hinting=true"
       , "xft:Weather Icons:pixelsize=22:hinting=true"]
   , iconRoot     = ".config/xmonad/icons"
   , bgColor      = colorBack
