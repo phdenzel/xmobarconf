@@ -6,7 +6,7 @@ import Colors.PhDDark
 
 main = export $ config {
   -- appearance
-    font    = "xft:Source Code Pro:size=11:antialias=true"
+    font    = "xft:Fira Sans:size=11:antialias=true"
   , additionalFonts =
       [ "xft:Hack:size=7:antialias=true"
       , "xft:Font Awesome 6 Free Solid:pixelsize=20:hinting=true"
