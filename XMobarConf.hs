@@ -6,14 +6,14 @@ import Colors.PhDDark
 
 main = export $ config {
   -- appearance
-    font    = "xft:Fira Sans:size=11:antialias=true"
+    font    = "Fira Sans 12"
   , additionalFonts =
-      [ "xft:Hack:size=7:antialias=true"
-      , "xft:Font Awesome 6 Free Solid:pixelsize=20:hinting=true"
-      , "xft:Font Awesome 6 Free Solid:pixelsize=24:hinting=true"
-      , "xft:Font Awesome 6 Brands Regular:pixelsize=22:hinting=true"
-      , "xft:Font Awesome 6 Brands Regular:pixelsize=30:hinting=true"
-      , "xft:Weather Icons:pixelsize=22:hinting=true"]
+      [ "Hack 12"
+      , "Font Awesome 6 Free Heavy 14"
+      , "Font Awesome 6 Free Heavy 16"
+      , "Font Awesome 6 Brands 14"
+      , "Font Awesome 6 Brands 16"
+      , "Weather Icons 14"]
   , iconRoot     = ".config/xmonad/icons"
   , bgColor      = colorBack
   , fgColor      = colorFore
@@ -46,8 +46,8 @@ main = export $ config {
     , Run $ Com "xmobar_wttr" [] "wttr" 9000
 
     -- cpu activity monitors
-    , Run $ Com "echo" [cpuIcon] "cpuicon" 36000
-    , Run $ Cpu      [ "-t" , hwrap "<total>%"
+    , Run $ Com "echo" [hwrap cpuIcon] "cpuicon" 36000
+    , Run $ Cpu      [ "-t" , "<total>%"++hair
                      , "-L" , "25"  -- units: %
                      , "-H" , "85"  -- units: %
                      , "-l" , color07
@@ -167,8 +167,8 @@ main = export $ config {
   , sepChar  = "%"
   , alignSep = "}{"
   , template = (cwrap color05 " %phoenix% "
-                ++ "%_XMONAD_LOG_1%"
-                ++ sep
+                ++ "%_XMONAD_LOG_1% "
+                ++ greySep
                 ++ (cwrap color04 "%cpuicon%") ++ "%cpu%"
                 ++ greySep
                 ++ (cwrap color10 "%gpuicon%") ++ "%gpu%"
@@ -201,7 +201,7 @@ main = export $ config {
     sep :: String
     sep = cwrap color00 " | "
     hair :: String
-    hair = (fn 1 " ")
+    hair = (fn 1 " ")
     hwrap :: String -> String
     hwrap s = hair ++ s ++ hair
 
