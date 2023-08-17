@@ -1,7 +1,7 @@
 module Main (main) where
 
 import XMobarConfGenerator
-import Colors.PhDDark
+import Colors.PhDArkIridis
 
 
 main = export $ config {
